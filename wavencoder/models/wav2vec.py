@@ -205,13 +205,12 @@ class Wav2Vec(nn.Module):
 
         if pretrained:
             filename = "wav2vec_large.pt"
+            pretrained_weights_link = "https://dl.fbaipublicfiles.com/fairseq/wav2vec/wav2vec_large.pt"
             if pretrained_path == None:
                 if not os.path.exists(filename):
-                    # _ = wget.download('https://dl.fbaipublicfiles.com/fairseq/wav2vec/wav2vec_large.pt')
-                    print('Downloading the pretrained weights from fairseq(https://dl.fbaipublicfiles.com/fairseq/wav2vec/wav2vec_large.pt) ...')
-                    # _ = urllib.request.urlretrieve("https://dl.fbaipublicfiles.com/fairseq/wav2vec/wav2vec_large.pt", "wav2vec_large.pt", MyProgressBar())
+                    print(f'Downloading the pretrained weights from fairseq({pretrained_weights_link}) ...', flush=True)
                     with tqdm(unit='B', unit_scale=True, miniters=1, desc=filename) as t:
-                        urllib.request.urlretrieve("https://dl.fbaipublicfiles.com/fairseq/wav2vec/wav2vec_large.pt", filename, reporthook=_reporthook(t))
+                        urllib.request.urlretrieve(pretrained_weights_link, filename, reporthook=_reporthook(t))
                 cp = torch.load(filename, map_location=self.device)
             else: 
                 cp = torch.load(pretrained_path, map_location=self.device)
