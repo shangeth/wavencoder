@@ -1,0 +1,10 @@
+README.md
+setup.py
+wavencoder/__init__.py
+wavencoder.egg-info/PKG-INFO
+wavencoder.egg-info/SOURCES.txt
+wavencoder.egg-info/dependency_links.txt
+wavencoder.egg-info/requires.txt
+wavencoder.egg-info/top_level.txt
+wavencoder/models/__init__.py
+wavencoder/models/wav2vec.py
