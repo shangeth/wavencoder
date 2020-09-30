@@ -1,3 +1,5 @@
+![Twitter Follow](https://img.shields.io/twitter/follow/shangethr?style=social)
+
 # WavEncoder
 
 WavEncoder is a Python library for encoding raw audio with PyTorch backend.
@@ -32,6 +34,7 @@ z = encoder(x) # [1, 512, 98]
 
 classifier = wavencoder.models.LSTM_Attn_Classifier(512, 64, 2)
 y_hat, attn_weights = classifier(z) # [1, 2], [1, 98]
+
 ```
 
 ```python
@@ -62,7 +65,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](LICENSE)
 
 
 ## Reference
