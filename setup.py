@@ -10,7 +10,7 @@ setuptools.setup(
     name="wavencoder",
     author="Shangeth Rajaa",
     author_email="shangethrajaa@gmail.com",
-    version="0.0.1",
+    version="0.0.2",
     license="MIT",
     url="https://github.com/shangeth/wavencoder",
     description="WavEncoder - PyTorch backed audio encoder",
