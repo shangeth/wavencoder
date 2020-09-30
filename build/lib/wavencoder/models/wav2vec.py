@@ -3,9 +3,11 @@ import torch.nn as nn
 import torch.nn.functional as F
 import math
 import os
-# import wget
 import urllib.request
-
+from argparse import Namespace
+from tqdm import tqdm
+import subprocess
+import sys
 
 from typing import Dict, List, Optional, Tuple
 from torch import Tensor
@@ -114,8 +116,37 @@ class ConvFeatureExtractionModel(nn.Module):
 
         return x
 
+def _reporthook(t):
+    """ ``reporthook`` to use with ``urllib.request`` that prints the process of the download.
 
-from argparse import Namespace
+    Uses ``tqdm`` for progress bar.
+
+    **Reference:**
+    https://github.com/tqdm/tqdm
+
+    Args:
+        t (tqdm.tqdm) Progress bar.
+
+    Example:
+        >>> with tqdm(unit='B', unit_scale=True, miniters=1, desc=filename) as t:  # doctest: +SKIP
+        ...   urllib.request.urlretrieve(file_url, filename=full_path, reporthook=reporthook(t))
+    """
+    last_b = [0]
+
+    def inner(b=1, bsize=1, tsize=None):
+        """
+        Args:
+            b (int, optional): Number of blocks just transferred [default: 1].
+            bsize (int, optional): Size of each block (in tqdm units) [default: 1].
+            tsize (int, optional): Total size (in tqdm units). If [default: None] remains unchanged.
+        """
+        if tsize is not None:
+            t.total = tsize
+        t.update((b - last_b[0]) * bsize)
+        last_b[0] = b
+
+    return inner
+
 class Wav2Vec(nn.Module):
     def __init__(self, pretrained=True, pretrained_path=None):
         super().__init__()
@@ -175,12 +206,18 @@ class Wav2Vec(nn.Module):
         )
 
         if pretrained:
+            subprocess.check_call([sys.executable, "-m", "pip", "install", "fairseq"])
+            filename = "wav2vec_large.pt"
             if pretrained_path == None:
-                if not os.path.exists('wav2vec_large.pt'):
+                if not os.path.exists(filename):
                     # _ = wget.download('https://dl.fbaipublicfiles.com/fairseq/wav2vec/wav2vec_large.pt')
-                    _ = urllib.request.urlretrieve("https://dl.fbaipublicfiles.com/fairseq/wav2vec/wav2vec_large.pt", "wav2vec_large.pt")
-                cp = torch.load('wav2vec_large.pt', map_location=self.device)
-            else: cp = torch.load(pretrained_path, lambda storage, loc: storage)
+                    print('Downloading the pretrained weights from fairseq(https://dl.fbaipublicfiles.com/fairseq/wav2vec/wav2vec_large.pt) ...')
+                    # _ = urllib.request.urlretrieve("https://dl.fbaipublicfiles.com/fairseq/wav2vec/wav2vec_large.pt", "wav2vec_large.pt", MyProgressBar())
+                    with tqdm(unit='B', unit_scale=True, miniters=1, desc=filename) as t:
+                        urllib.request.urlretrieve("https://dl.fbaipublicfiles.com/fairseq/wav2vec/wav2vec_large.pt", filename, reporthook=_reporthook(t))
+                cp = torch.load(filename, map_location=self.device)
+            else: 
+                cp = torch.load(pretrained_path, map_location=self.device)
             pretrained_dict = cp['model']
             model_dict = self.feature_extractor.state_dict()
             pretrained_dict = {k: v for k, v in pretrained_dict.items() if k in model_dict}

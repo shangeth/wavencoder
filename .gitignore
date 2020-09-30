@@ -1,1 +1,4 @@
 wevenv
+build
+dist
+wavencoder.egg-info
