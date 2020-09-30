@@ -30,9 +30,8 @@ x = torch.randn(1, 16000) # [1, 16000]
 encoder = wavencoder.models.Wav2Vec()
 z = encoder(x) # [1, 512, 98]
 
-classifier = wavencoder.models.MLPClassifier(infeature=512, out=2)
-z_avg = torch.mean(z, 2) # [1, 512]
-y_hat = classifier(z_avg) # [1, 2]
+classifier = wavencoder.models.LSTM_Attn_Classifier(512, 64, 2)
+y_hat, attn_weights = classifier(z) # [1, 2], [1, 98]
 ```
 
 ```python
@@ -42,7 +41,7 @@ import wavencoder
 
 class AudioClassifier(nn.Module):
     def __init__(self):
-        super().__init__()
+        super(AudioClassifier, self).__init__()
         self.encoder = wavencoder.models.Wav2Vec(pretrained=True)
         self.classifier = nn.Linear(512, 2)
 
