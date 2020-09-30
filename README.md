@@ -48,8 +48,8 @@ class AudioClassifier(nn.Module):
         return out
 
 model = AudioClassifier()
-x = torch.randn(1, 16000)
-y_hat = model(x)
+x = torch.randn(1, 16000) # [1, 16000]
+y_hat = model(x) # [1, 2]
 ```
 
 ## Contributing
