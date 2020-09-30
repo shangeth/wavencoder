@@ -32,6 +32,7 @@ x = torch.randn(1, 16000) # [1, 16000]
 encoder = wavencoder.models.Wav2Vec()
 z = encoder(x) # [1, 512, 98]
 
+# not yet implemented
 classifier = wavencoder.models.MLPClassifier(infeature=512, out=2)
 z_avg = torch.mean(z, 2) # [1, 512]
 y_hat = classifier(z_avg) # [1, 2]
