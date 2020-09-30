@@ -9,6 +9,10 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install wavenco
 ```bash
 pip install fairseq
 pip install wavencoder
+
+# currently its in test pypi
+pip install fairseq
+pip install -i https://test.pypi.org/simple/ wavencoder==0.1.2
 ```
 
 ## Usage
