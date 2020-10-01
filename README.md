@@ -10,6 +10,7 @@ WavEncoder is a Python library for encoding raw audio with PyTorch backend.
 - [x] SincNet [[3]](#3)
 - [ ] PASE [[4]](#4)
 - [ ] MockingJay [[5]](#5)
+- [ ] RawNet [[6]](#6)
 
 Check the [Demo Colab Notebook](https://colab.research.google.com/drive/1Jv9cH4H0xB2To1rihFz-Z-JaK-6ilq12?usp=sharing).
 
@@ -83,10 +84,11 @@ Please make sure to update tests as appropriate.
 
 
 ## Reference
-|                   | Paper                                                                                                                                                    | Code                                                                                                 |
-|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
-| <a id="1">[1]</a> | [Wav2Vec: Unsupervised Pre-training for Speech Recognition](https://arxiv.org/abs/1904.05862)                                                            | [GitHub](https://github.com/pytorch/fairseq)                                                         |
-| <a id="2">[2]</a> | [Wav2vec 2.0: Learning the structure of speech from raw audio](https://ai.facebook.com/blog/wav2vec-20-learning-the-structure-of-speech-from-raw-audio/) | [GitHub](https://github.com/pytorch/fairseq)                                                         |
-| <a id="3">[3]</a> | [Speaker Recognition from Raw Waveform with SincNet](https://arxiv.org/abs/1808.00158)                                                                   | [GitHub](https://github.com/mravanelli/SincNet)                                                      |
-| <a id="4">[4]</a> | [Learning Problem-agnostic Speech Representations from Multiple Self-supervised Tasks](https://arxiv.org/abs/1904.03416)                                 | [GitHub](https://github.com/santi-pdp/pase)                                                          |
-| <a id="5">[5]</a> | [Mockingjay: Unsupervised Speech Representation Learning with Deep Bidirectional Transformer Encoders](https://arxiv.org/abs/1910.12638)                 | [GitHub](https://github.com/andi611/Self-Supervised-Speech-Pretraining-and-Representation-Learning ) |
+|     | Paper                                                                                                                                                    | Code                                                                                                 |
+|-----|----------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| [1] | [Wav2Vec: Unsupervised Pre-training for Speech Recognition](https://arxiv.org/abs/1904.05862)                                                            | [GitHub](https://github.com/pytorch/fairseq)                                                         |
+| [2] | [Wav2vec 2.0: Learning the structure of speech from raw audio](https://ai.facebook.com/blog/wav2vec-20-learning-the-structure-of-speech-from-raw-audio/) | [GitHub](https://github.com/pytorch/fairseq)                                                         |
+| [3] | [Speaker Recognition from Raw Waveform with SincNet](https://arxiv.org/abs/1808.00158)                                                                   | [GitHub](https://github.com/mravanelli/SincNet)                                                      |
+| [4] | [Learning Problem-agnostic Speech Representations from Multiple Self-supervised Tasks](https://arxiv.org/abs/1904.03416)                                 | [GitHub](https://github.com/santi-pdp/pase)                                                          |
+| [5] | [Mockingjay: Unsupervised Speech Representation Learning with Deep Bidirectional Transformer Encoders](https://arxiv.org/abs/1910.12638)                 | [GitHub](https://github.com/andi611/Self-Supervised-Speech-Pretraining-and-Representation-Learning ) |
+| [6] | [Improved RawNet with Feature Map Scaling for Text-independent Speaker Verification using Raw Waveforms](https://arxiv.org/abs/2004.00526)               | [GitHub](https://github.com/Jungjee/RawNet)                                                          |
