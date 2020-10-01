@@ -37,7 +37,7 @@ y_hat, attn_weights = classifier(z) # [1, 2], [1, 98]
 
 ```
 
-```
+```python
 import torch
 import torch.nn as nn
 import wavencoder
