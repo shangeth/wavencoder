@@ -47,10 +47,8 @@ model = nn.Sequential(
         wavencoder.models.LSTM_Attn_Classifier(512, 64, 2)
 )
 
-x = torch.randn(1, 16000)
-y_hat, attn_weights = model(x)
-
-print(y_hat.shape, attn_weights.shape)
+x = torch.randn(1, 16000) # [1, 16000]
+y_hat, attn_weights = model(x) # [1, 2], [1, 98]
 ```
 
 ```python
