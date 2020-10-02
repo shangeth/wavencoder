@@ -24,13 +24,13 @@ pip install wavencoder
 ```
 
 ## Usage
-
+### Import pretrained encoder models and classifiers
 ```python
 import torch
 import wavencoder
 
 x = torch.randn(1, 16000) # [1, 16000]
-encoder = wavencoder.models.Wav2Vec()
+encoder = wavencoder.models.Wav2Vec(pretrained=True)
 z = encoder(x) # [1, 512, 98]
 
 classifier = wavencoder.models.LSTM_Attn_Classifier(512, 64, 2)
@@ -38,6 +38,7 @@ y_hat, attn_weights = classifier(z) # [1, 2], [1, 98]
 
 ```
 
+### Use wavencoder with PyTorch Sequential or class modules
 ```python
 import torch
 import torch.nn as nn
@@ -72,6 +73,23 @@ class AudioClassifier(nn.Module):
 model = AudioClassifier()
 x = torch.randn(1, 16000) # [1, 16000]
 y_hat = model(x) # [1, 2]
+```
+### Train the encoder-classifier models
+```python
+from wavencoder.models import Wav2Vec, LSTM_Attn_Classifier
+from wavencoder.trainer import train, test_evaluate_classifier, test_predict_classifier
+
+model = nn.Sequential(
+    Wav2Vec(pretrained=False),
+    LSTM_Attn_Classifier(512, 64, 2)
+)
+
+trainloader = ...
+valloader = ...
+testloader = ...
+
+trained_model, train_dict = train(model, trainloader, valloader, n_epochs=20)
+test_prediction_dict = test_predict_classifier(trained_model, testloader)
 ```
 
 ## Contributing

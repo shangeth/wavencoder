@@ -15,8 +15,9 @@ class LSTM_Classifier(nn.Module):
         return out
 
 class LSTM_Attn_Classifier(nn.Module):
-    def __init__(self, inp_size, hidden_size, n_classes):
+    def __init__(self, inp_size, hidden_size, n_classes, return_attn_weights=False):
         super(LSTM_Attn_Classifier, self).__init__()
+        self.return_attn_weights = return_attn_weights
         self.lstm = nn.LSTM(inp_size, hidden_size, batch_first=True)
         self.classifier = nn.Linear(hidden_size, n_classes)
 
@@ -31,4 +32,7 @@ class LSTM_Attn_Classifier(nn.Module):
         lstm_out, (hidden, _) = self.lstm(x.transpose(1,2))
         attn_output, soft_attn_weights = self.attention_net(lstm_out, hidden)
         out = self.classifier(attn_output)
-        return out, soft_attn_weights
+        if self.return_attn_weights:
+            return out, soft_attn_weights
+        else:
+            return out
