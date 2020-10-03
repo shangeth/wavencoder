@@ -568,7 +568,7 @@ class SincNet(nn.Module):
                 }
         if not self.only_cnn:
             self.ann_network1 = MLP(DNN1_arch)
-            # self.ann_network2 = MLP(DNN2_arch)
+            self.ann_network2 = MLP(DNN2_arch)
         
         if pretrained:
             filename = "model_raw.pkl"
@@ -584,9 +584,12 @@ class SincNet(nn.Module):
             self.cnn_network.load_state_dict(cp['CNN_model_par'])
             if not self.only_cnn:
                 self.ann_network1.load_state_dict(cp['DNN1_model_par'])
+                # self.ann_network2.load_state_dict(cp['DNN2_model_par'])
 
     def forward(self, x):
+        x = x.squeeze(1)
         y = self.cnn_network(x)
-        if self.only_cnn:
+        if not self.only_cnn:
             y = self.ann_network1(y)
+            # y = self.ann_network2(y)
         return y

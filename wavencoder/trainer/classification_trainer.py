@@ -29,7 +29,7 @@ def train(model, trainloader, valloader, n_epochs,
         epoch_train_loss = 0
         epoch_train_acc = 0
         model.train()
-        for batch in tqdm(trainloader, desc="Training"):
+        for batch in tqdm(trainloader, desc="Train"):
             batch_x, batch_y = batch
             batch_x, batch_y = batch_x.float().to(device), batch_y.long().view(-1).to(device)
             y_hat = model(batch_x)
@@ -52,7 +52,7 @@ def train(model, trainloader, valloader, n_epochs,
         with torch.no_grad():
             epoch_val_loss = 0
             epoch_val_acc = 0
-            for batch in tqdm(valloader, desc="Validation"):
+            for batch in tqdm(valloader, desc="Val  "):
                 batch_x, batch_y = batch
                 batch_x, batch_y = batch_x.float().to(device), batch_y.long().view(-1).to(device)
                 y_hat = model(batch_x)
@@ -62,17 +62,17 @@ def train(model, trainloader, valloader, n_epochs,
                 _, max_indices = torch.max(y_hat, 1)
                 epoch_val_acc += (max_indices == batch_y).sum().data.cpu().numpy()/max_indices.size()[0]
 
-            epoch_val_loss = epoch_val_acc/len(valloader)
+            epoch_val_loss = epoch_val_loss/len(valloader)
             epoch_val_acc = epoch_val_acc/len(valloader)
             val_losses.append(epoch_val_loss)
             val_accuracies.append(epoch_val_acc)
 
             if epoch_val_loss < val_loss_min:
                 torch.save(model.state_dict(), save_path)
-                tqdm.write(f'Validation loss reduced from {val_loss_min:.6f} to {epoch_val_loss:.6f}, saving model ...')
+                tqdm.write(f'Validation loss reduced from {val_loss_min:.6f} to {epoch_val_loss:.6f}, saving model at {save_path} ...')
                 val_loss_min = epoch_val_loss
 
-        tqdm.write(f'Epoch : {i_epoch+1:02}\nTrain Loss = {epoch_train_loss:.4f}\tTrain Acc = {epoch_train_acc}\n Val Loss = {epoch_val_loss:.4f}\t  Val Acc = {epoch_val_acc}')
+        tqdm.write(f'Epoch : {i_epoch+1:02}\nTrain Loss = {epoch_train_loss:.4f}\tTrain Acc = {epoch_train_acc}\n  Val Loss = {epoch_val_loss:.4f}\t  Val Acc = {epoch_val_acc}\n')
 
     loss_dict = {"train_losses" : train_losses,
                  "val_losses" : val_losses,
@@ -98,7 +98,7 @@ def test_evaluate_classifier(model, testloader,
             _, max_indices = torch.max(y_hat, 1)
             test_val_acc += (max_indices == batch_y).sum().data.cpu().numpy()/max_indices.size()[0]
 
-        test_val_loss = test_val_acc/len(testloader)
+        test_val_loss = test_val_loss/len(testloader)
         test_val_acc = test_val_acc/len(testloader)
 
         loss_dict = {"test_loss" : test_val_loss,
