@@ -2,3 +2,4 @@ wevenv
 build
 dist
 wavencoder.egg-info
+trained_model.pt

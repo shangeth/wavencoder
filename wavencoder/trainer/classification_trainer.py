@@ -8,6 +8,7 @@ from tqdm import tqdm
 def train(model, trainloader, valloader, n_epochs, 
     optimizer=None,
     lr=1e-3,
+    scheduler=None,
     criterion=nn.CrossEntropyLoss(),
     device=torch.device("cuda" if torch.cuda.is_available() else "cpu"),
     save_path="trained_model.pt"):
@@ -71,6 +72,10 @@ def train(model, trainloader, valloader, n_epochs,
                 torch.save(model.state_dict(), save_path)
                 tqdm.write(f'Validation loss reduced from {val_loss_min:.6f} to {epoch_val_loss:.6f}, saving model at {save_path} ...')
                 val_loss_min = epoch_val_loss
+
+        if scheduler:
+            scheduler.step()
+            tqdm.write(f'Updating lr to {scheduler.get_last_lr()}')
 
         tqdm.write(f'Epoch : {i_epoch+1:02}\nTrain Loss = {epoch_train_loss:.4f}\tTrain Acc = {epoch_train_acc}\n  Val Loss = {epoch_val_loss:.4f}\t  Val Acc = {epoch_val_acc}\n')
 

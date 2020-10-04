@@ -31,8 +31,9 @@ valloader = torch.utils.data.DataLoader(val_ds, batch_size=5)
 testloader = torch.utils.data.DataLoader(test_ds, batch_size=5)
 
 # -------------------------------
-optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
-model, train_dict = train(model, trainloader, valloader, n_epochs=5, optimizer=optimizer)
+optimizer = torch.optim.SGD(model.parameters(), lr=1e-3)
+scheduler = torch.optim.lr_scheduler.CyclicLR(optimizer, base_lr=1e-4, max_lr=1e-1, step_size_up=10)
+model, train_dict = train(model, trainloader, valloader, n_epochs=5, optimizer=optimizer, scheduler=scheduler)
 # test_dict = test_evaluate_classifier(model, testloader)
 test_dict = test_predict_classifier(model, testloader)
 print(test_dict)

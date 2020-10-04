@@ -4,7 +4,7 @@
 
 WavEncoder is a Python library for encoding raw audio with PyTorch backend.
 
-## Models to be added
+## Wav Models to be added
 - [x] wav2vec [[1]](#1)
 - [ ] wav2vec2 [[2]](#2)
 - [x] SincNet [[3]](#3)
