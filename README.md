@@ -11,9 +11,9 @@ WavEncoder is a Python library for encoding raw audio with PyTorch backend.
 - [ ] PASE [[4]](#4)
 - [ ] MockingJay [[5]](#5)
 - [ ] RawNet [[6]](#6)
-- [ ] CNN-1D
-- [ ] CNN-LSTM
-- [ ] CNN-LSTM-Attn
+- [x] CNN-1D
+- [x] CNN-LSTM
+- [x] CNN-LSTM-Attn
 - [ ] CNN-Transformer
 
 Check the [Demo Colab Notebook](https://colab.research.google.com/drive/1Jv9cH4H0xB2To1rihFz-Z-JaK-6ilq12?usp=sharing).
