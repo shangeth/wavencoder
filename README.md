@@ -1,5 +1,3 @@
-![Twitter Follow](https://img.shields.io/twitter/follow/shangethr?style=social)
-
 # WavEncoder
 
 WavEncoder is a Python library for encoding raw audio with PyTorch backend.
