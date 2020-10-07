@@ -1,5 +1,6 @@
 ![PyPI - Downloads](https://img.shields.io/pypi/dw/wavencoder?logo=PyPi&style=plastic)
-[![Visits Badge](https://badges.pufler.dev/visits/shangeth/wavencoder)](https://badges.pufler.dev)
+![visitors](https://visitor-badge.glitch.me/badge?page_id=page.id)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/wavencoder)
 ![GitHub last commit](https://img.shields.io/github/last-commit/shangeth/wavencoder)
 ![GitHub top language](https://img.shields.io/github/languages/top/shangeth/wavencoder)
