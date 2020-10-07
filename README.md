@@ -1,4 +1,5 @@
-![PyPI - Downloads](https://img.shields.io/pypi/dd/wavencoder?logo=PyPi&style=plastic)
+![PyPI - Downloads](https://img.shields.io/pypi/dw/wavencoder?logo=PyPi&style=plastic)
+![Twitter Follow](https://img.shields.io/twitter/follow/shangethr?style=social)
 
 # WavEncoder
 
