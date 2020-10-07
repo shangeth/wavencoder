@@ -1,3 +1,4 @@
+![PyPI](https://img.shields.io/pypi/v/wavencoder)
 ![PyPI - Downloads](https://img.shields.io/pypi/dw/wavencoder?logo=PyPi&style=plastic)
 ![visitors](https://visitor-badge.glitch.me/badge?page_id=page.id)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
