@@ -1,4 +1,4 @@
-!![PyPI - Downloads](https://img.shields.io/pypi/dd/wavencoder?logo=PyPi&style=plastic)
+![PyPI - Downloads](https://img.shields.io/pypi/dd/wavencoder?logo=PyPi&style=plastic)
 
 # WavEncoder
 
