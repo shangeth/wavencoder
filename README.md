@@ -1,4 +1,8 @@
 ![PyPI - Downloads](https://img.shields.io/pypi/dw/wavencoder?logo=PyPi&style=plastic)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/wavencoder)
+![GitHub last commit](https://img.shields.io/github/last-commit/shangeth/wavencoder)
+![GitHub top language](https://img.shields.io/github/languages/top/shangeth/wavencoder)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/shangeth/wavencoder)
 ![Twitter Follow](https://img.shields.io/twitter/follow/shangethr?style=social)
 
 # WavEncoder
