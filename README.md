@@ -7,7 +7,7 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/shangeth/wavencoder)
 ![Twitter Follow](https://img.shields.io/twitter/follow/shangethr?style=social)
 [![HitCount](http://hits.dwyl.com/shangeth/wavencoder.svg)](http://hits.dwyl.com/shangeth/wavencoder)
-![Gitter](https://img.shields.io/gitter/room/shangeth/wavencoder)
+
 
 
 # WavEncoder
