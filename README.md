@@ -1,3 +1,5 @@
+![PyPI - Downloads](https://img.shields.io/pypi/dw/wavencoder)
+
 # WavEncoder
 
 WavEncoder is a Python library for encoding raw audio with PyTorch backend.
