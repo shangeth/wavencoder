@@ -1,4 +1,5 @@
 ![PyPI - Downloads](https://img.shields.io/pypi/dw/wavencoder?logo=PyPi&style=plastic)
+[![Visits Badge](https://badges.pufler.dev/visits/shangeth/wavencoder)](https://badges.pufler.dev)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/wavencoder)
 ![GitHub last commit](https://img.shields.io/github/last-commit/shangeth/wavencoder)
 ![GitHub top language](https://img.shields.io/github/languages/top/shangeth/wavencoder)
