@@ -6,7 +6,6 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/shangeth/wavencoder)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/shangeth/wavencoder)
 ![GitHub](https://img.shields.io/github/license/shangeth/wavencoder)
-[![HitCount](http://hits.dwyl.com/shangeth/wavencoder.svg)](http://hits.dwyl.com/shangeth/wavencoder)
 [![Gitter](https://badges.gitter.im/wavencoder/community.svg)](https://gitter.im/wavencoder/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 ![Twitter Follow](https://img.shields.io/twitter/follow/shangethr?style=social)
 
