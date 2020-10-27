@@ -3,3 +3,6 @@ build
 dist
 wavencoder.egg-info
 trained_model.pt
+__pycache__/
+**/__pycache__/
+**/**/__pycache__/

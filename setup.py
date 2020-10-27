@@ -24,7 +24,7 @@ setuptools.setup(
     ],
     include_package_data=True,
     packages=setuptools.find_packages(),
-    install_requires=["torch", "tqdm"],
+    install_requires=["torch", "fairseq", "tqdm"],
 # line.strip() for line in open("requirements.txt", "r").readlines()],
     # dependency_links=["git+https://github.com/pytorch/fairseq"]
 )
