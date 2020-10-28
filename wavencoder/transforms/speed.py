@@ -10,9 +10,8 @@ class SpeedChange:
     # @profile
     def __call__(self, wav):
         wav = wav.view(-1)
-        warp_factor = random.random() * (self.factor_range[1] - self.factor_range[0]) + self.factor_range[0]
-        samp_warp = wav.shape[0] + int(warp_factor * wav.shape[0])
-        samp_warp = 10000
+        warp_factor = random.uniform(self.factor_range[0], self.factor_range[1]) 
+        samp_warp = self.orig_freq + self.orig_freq * warp_factor
         rwav = kaldi.resample_waveform(wav.view(1, -1), self.orig_freq, samp_warp)
         rwav = rwav.view(-1)
 
