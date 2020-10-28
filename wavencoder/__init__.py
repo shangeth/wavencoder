@@ -14,4 +14,5 @@ from wavencoder.trainer.classification_trainer import test_evaluate_classifier
 
 from wavencoder.transforms.noise import AdditiveNoise
 from wavencoder.transforms.speed import SpeedChange
+from wavencoder.transforms.clip import Clipping
 from wavencoder.transforms.compose import Compose
