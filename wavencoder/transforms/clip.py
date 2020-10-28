@@ -12,6 +12,7 @@ class Clipping(object):
     def __call__(self, wav):
         cf = random.choice(self.clip_factors)
         clipped_wav = torch.clamp(wav.view(-1),cf*torch.min(wav),cf*torch.max(wav))
+        clipped_wav =clipped_wav.view(1, -1)
         return clipped_wav
 
     def __repr__(self):
