@@ -215,10 +215,10 @@ class Wav2Vec(nn.Module):
             else: 
                 cp = torch.load(pretrained_path, map_location=self.device)
             pretrained_dict = cp['model']
-            model_dict = self.feature_extractor.state_dict()
+            model_dict = self.state_dict()
             pretrained_dict = {k: v for k, v in pretrained_dict.items() if k in model_dict}
             model_dict.update(pretrained_dict) 
-            self.feature_extractor.load_state_dict(model_dict)
+            self.load_state_dict(model_dict)
 
     def forward(self, x):
         x = x.squeeze(1)
