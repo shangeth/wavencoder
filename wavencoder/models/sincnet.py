@@ -61,7 +61,7 @@ def sinc(band,t_right):
     return y
     
 
-class SincConv_fast(nn.Module):
+class SincConvLayer(nn.Module):
     """Sinc-based convolution
     Parameters
     ----------
@@ -94,7 +94,7 @@ class SincConv_fast(nn.Module):
     def __init__(self, out_channels, kernel_size, sample_rate=16000, in_channels=1,
                  stride=1, padding=0, dilation=1, bias=False, groups=1, min_low_hz=50, min_band_hz=50):
 
-        super(SincConv_fast,self).__init__()
+        super(SincConvLayer,self).__init__()
 
         if in_channels != 1:
             #msg = (f'SincConv only support one input channel '
@@ -192,10 +192,7 @@ class SincConv_fast(nn.Module):
         return F.conv1d(waveforms, self.filters, stride=self.stride,
                         padding=self.padding, dilation=self.dilation,
                          bias=None, groups=1) 
-
-
-        
-        
+      
 class sinc_conv(nn.Module):
 
     def __init__(self, N_filt,Filt_dim,fs):
@@ -452,7 +449,7 @@ class SincNetModel(nn.Module):
             
 
          if i==0:
-          self.conv.append(SincConv_fast(self.cnn_N_filt[0],self.cnn_len_filt[0],self.fs))
+          self.conv.append(SincConvLayer(self.cnn_N_filt[0],self.cnn_len_filt[0],self.fs))
               
          else:
           self.conv.append(nn.Conv1d(self.cnn_N_filt[i-1], self.cnn_N_filt[i], self.cnn_len_filt[i]))
@@ -496,10 +493,11 @@ class SincNetModel(nn.Module):
 
     
 class SincNet(nn.Module):
-    def __init__(self, only_cnn=False, pretrained=True, pretrained_path=None):
+    def __init__(self, only_cnn=False, pretrained=True, pretrained_path=None,  device=torch.device("cpu")):
         super(SincNet, self).__init__()
         self.only_cnn = only_cnn
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.device = device
+        
         # [cnn]
         fs = 16000
         cw_len=200

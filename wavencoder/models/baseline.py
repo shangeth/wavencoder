@@ -24,3 +24,5 @@ class CNN1d(nn.Module):
         for conv in self.conv_layers:
             x = conv(x)
         return x
+
+

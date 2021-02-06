@@ -12,7 +12,7 @@
 
 # WavEncoder
 
-WavEncoder is a Python library for encoding raw audio with PyTorch backend.
+WavEncoder is a Python library for encoding audio signal, transforms for audio augmention and training audio classification models with PyTorch backend.
 
 ## Wav Models to be added
 - [x] wav2vec [[1]](#1)
@@ -38,7 +38,7 @@ pip install wavencoder
 ```
 
 ## Usage
-### Import pretrained encoder models and classifiers
+### Import pretrained encoder, baseline models and classifiers
 ```python
 import torch
 import wavencoder
@@ -47,7 +47,9 @@ x = torch.randn(1, 16000) # [1, 16000]
 encoder = wavencoder.models.Wav2Vec(pretrained=True)
 z = encoder(x) # [1, 512, 98]
 
-classifier = wavencoder.models.LSTM_Attn_Classifier(512, 64, 2)
+classifier = wavencoder.models.LSTM_Attn_Classifier(512, 64, 2,                          
+                                                    return_attn_weights=True, 
+                                                    attn_type='soft')
 y_hat, attn_weights = classifier(z) # [1, 2], [1, 98]
 
 ```
@@ -60,7 +62,9 @@ import wavencoder
 
 model = nn.Sequential(
         wavencoder.models.Wav2Vec(),
-        wavencoder.models.LSTM_Attn_Classifier(512, 64, 2)
+        wavencoder.models.LSTM_Attn_Classifier(512, 64, 2,                          
+                                               return_attn_weights=True, 
+                                               attn_type='soft')
 )
 
 x = torch.randn(1, 16000) # [1, 16000]
@@ -105,6 +109,24 @@ testloader = ...
 trained_model, train_dict = train(model, trainloader, valloader, n_epochs=20)
 test_prediction_dict = test_predict_classifier(trained_model, testloader)
 ```
+
+### Add Transforms to your DataLoader for Augmentation/Processing the wav signal
+```python
+from wavencoder.transforms import Compose, AdditiveNoise, SpeedChange, Clipping, PadCrop, Reverberation
+
+audio, _ = torchaudio.load('test.wav')
+
+transforms = Compose([
+                    AdditiveNoise('path-to-noise', p=0.5, snr_levels=[5, 10, 15]), # add environmental Noise
+                    SpeedChange(factor_range=(-0.5, 0.0)), # change speed of signal
+                    Clipping(), # clip the amplitude of the signal
+                    PadCrop(48000, crop_position='random', pad_position='random') # fix the siz of the signal pad/crop depending on the wav lenght
+                    ])
+
+transformed_audio = transforms(audio)
+
+```
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

@@ -1,3 +1,10 @@
+'''
+Refer fairseq's wav2vec for more pretrained models
+https://github.com/pytorch/fairseq/blob/master/examples/wav2vec/README.md
+
+Code from fairseq's repository is used in this file
+'''
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -146,9 +153,9 @@ def _reporthook(t):
     return inner
 
 class Wav2Vec(nn.Module):
-    def __init__(self, pretrained=True, pretrained_path=None):
+    def __init__(self, pretrained=True, pretrained_path=None, device=torch.device("cpu")):
         super().__init__()
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.device = device
         if pretrained:
             args = {'activation':'relu', 'no_progress_bar': False, 'log_interval': 500, 'log_format': 'json', 'seed': 1, 'fp16': True, 
             'fp16_init_scale': 128, 'fp16_scale_window': None, 'task': 'speech_pretraining', 'skip_invalid_size_inputs_valid_test': True, 

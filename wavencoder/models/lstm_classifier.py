@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from wavencoder.models.attention import DotAttention, SoftAttention
 
 class LSTM_Classifier(nn.Module):
     def __init__(self, inp_size, hidden_size, n_classes):
@@ -15,24 +16,30 @@ class LSTM_Classifier(nn.Module):
         return out
 
 class LSTM_Attn_Classifier(nn.Module):
-    def __init__(self, inp_size, hidden_size, n_classes, return_attn_weights=False):
+    def __init__(self, inp_size, hidden_size, n_classes, return_attn_weights=False, attn_type='dot'):
         super(LSTM_Attn_Classifier, self).__init__()
         self.return_attn_weights = return_attn_weights
         self.lstm = nn.LSTM(inp_size, hidden_size, batch_first=True)
+        self.attn_type = attn_type
+
+        if self.attn_type == 'dot':
+            self.attention = DotAttention()
+        elif self.attn_type == 'soft':
+            self.attention = SoftAttention(hidden_size)
+
         self.classifier = nn.Linear(hidden_size, n_classes)
 
-    def attention_net(self, lstm_output, final_state):
-        hidden = final_state.squeeze(0)
-        attn_weights = torch.bmm(lstm_output, hidden.unsqueeze(2)).squeeze(2)
-        soft_attn_weights = F.softmax(attn_weights, 1)
-        new_hidden_state = torch.bmm(lstm_output.transpose(1, 2), soft_attn_weights.unsqueeze(2)).squeeze(2)
-        return new_hidden_state, soft_attn_weights
 
     def forward(self, x):
         lstm_out, (hidden, _) = self.lstm(x.transpose(1,2))
-        attn_output, soft_attn_weights = self.attention_net(lstm_out, hidden)
+
+        if self.attn_type == 'dot':
+            attn_output, attn_weights = self.attention(lstm_out, hidden)
+        elif self.attn_type == 'soft':
+            attn_output, attn_weights = self.attention(lstm_out)
+
         out = self.classifier(attn_output)
         if self.return_attn_weights:
-            return out, soft_attn_weights
+            return out, attn_weights
         else:
             return out
