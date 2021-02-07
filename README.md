@@ -20,7 +20,7 @@ WavEncoder is a Python library for encoding audio signal, transforms for audio a
 - [x] SincNet [[3]](#3)
 - [ ] PASE [[4]](#4)
 - [ ] MockingJay [[5]](#5)
-- [ ] RawNet [[6]](#6)
+- [x] RawNet [[6]](#6)
 - [x] CNN-1D
 - [x] CNN-LSTM
 - [x] CNN-LSTM-Attn
