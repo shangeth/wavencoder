@@ -122,7 +122,7 @@ transforms = Compose([
                     AdditiveNoise('path-to-noise', p=0.5, snr_levels=[5, 10, 15]), # add environmental Noise
                     SpeedChange(factor_range=(-0.5, 0.0)), # change speed of signal
                     Clipping(), # clip the amplitude of the signal
-                    PadCrop(48000, crop_position='random', pad_position='random') # fix the siz of the signal pad/crop depending on the wav lenght
+                    PadCrop(48000, crop_position='random', pad_position='random') # fix the size of the signal pad/crop depending on the wav length
                     ])
 
 transformed_audio = transforms(audio)
