@@ -32,12 +32,6 @@ setuptools.setup(
         "numpy>=1.19.2",
         "scipy==1.4.1",
         "torch>=1.6.0",
-        "torchaudio>=0.6.0",
-        "fairseq>=0.9.0", 
+        "torchaudio>=0.6.0", 
         "tqdm>=4.50.0",
-        "fairseq>=0.10.2",
         "dataclasses==0.8"],
-
-# line.strip() for line in open("requirements.txt", "r").readlines()],
-    # dependency_links=["git+https://github.com/pytorch/fairseq"]
-)

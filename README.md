@@ -92,7 +92,6 @@ Check the [Demo Colab Notebook](https://colab.research.google.com/drive/1Jv9cH4H
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install wavencoder.
 
 ```bash
-pip install fairseq
 pip install wavencoder
 ```
 

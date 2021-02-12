@@ -201,7 +201,7 @@ class RawNet2Model(nn.Module):
             pretrained_weights_link = "https://github.com/Jungjee/RawNet/raw/master/Pre-trained_model/rawnet2_best_weights.pt"
             if pretrained_path == None:
                 if not os.path.exists(filename):
-                    print(f'Downloading the pretrained weights from fairseq({pretrained_weights_link}) ...', flush=True)
+                    print(f'Downloading the pretrained weights from Jungjee/RawNet({pretrained_weights_link}) ...', flush=True)
                     with tqdm(unit='B', unit_scale=True, miniters=1, desc=filename) as t:
                         urllib.request.urlretrieve(pretrained_weights_link, filename, reporthook=_reporthook(t))
                 cp = torch.load(filename, map_location=self.device)
