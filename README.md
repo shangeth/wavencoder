@@ -29,7 +29,13 @@ WavEncoder is a Python library for encoding audio signal, transforms for audio a
   <tr>
     <td class="tg-0pky">
         <ul>
-            <li>Attention(Dot/Soft/Additive/Multiplicative)</li>
+            <li>Attention</li>
+            <ul>
+                <li>Dot</li>
+                <li>Soft</li>
+                <li>Additive</li>
+                <li>Multiplicative</li>
+            </ul>
             <li>SincNet layer</li>
             <li>Time Delay Neural Network(TDNN)</li>
         </ul>
