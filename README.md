@@ -14,6 +14,71 @@
 
 WavEncoder is a Python library for encoding audio signal, transforms for audio augmention and training audio classification models with PyTorch backend.
 
+## Package Contents
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-7btt{border-color:inherit;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-7btt">Layers</th>
+    <th class="tg-7btt">Models</th>
+    <th class="tg-7btt">Transforms</th>
+    <th class="tg-7btt">Training</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0pky">
+        <ul>
+            <li>Attention(Dot/Soft/Additive/Multiplicative)</li>
+            <li>SincNet layer</li>
+            <li>Time Delay Neural Network(TDNN)</li>
+        </ul>
+    </td>
+    <td class="tg-0pky">
+        <ul>
+            <li>PreTrained</li>
+                <ul>
+                    <li>wav2vec</li>
+                    <li>SincNet</li>
+                    <li>RawNet</li>
+                </ul>
+            <li>Baseline</li>
+                <ul>
+                    <li>1DCNN</li>
+                    <li>LSTM Classifier</li>
+                    <li>LSTM Attention Classifier</li>
+                </ul>
+        </ul>
+    </td>
+    <td class="tg-0pky">
+        <ul>
+            <li>Noise(Environmet/Gaussian White Noise)</li>
+            <li>Speed Change</li>
+            <li>PadCrop</li>
+            <li>Clip</li>
+            <li>Reverberation</li>
+        </ul>
+    </td>
+    <td class="tg-0pky">
+        <ul>
+            <li>Classification Trainer</li>
+            <li>Classification Testing</li>
+        </ul>
+    </td>
+  </tr>
+</tbody>
+</table>
+
+
+
 ## Wav Models to be added
 - [x] wav2vec [[1]](#1)
 - [ ] wav2vec2 [[2]](#2)
@@ -148,3 +213,5 @@ Please make sure to update tests as appropriate.
 | [4] | [Learning Problem-agnostic Speech Representations from Multiple Self-supervised Tasks](https://arxiv.org/abs/1904.03416)                                 | [GitHub](https://github.com/santi-pdp/pase)                                                          |
 | [5] | [Mockingjay: Unsupervised Speech Representation Learning with Deep Bidirectional Transformer Encoders](https://arxiv.org/abs/1910.12638)                 | [GitHub](https://github.com/andi611/Self-Supervised-Speech-Pretraining-and-Representation-Learning ) |
 | [6] | [Improved RawNet with Feature Map Scaling for Text-independent Speaker Verification using Raw Waveforms](https://arxiv.org/abs/2004.00526)               | [GitHub](https://github.com/Jungjee/RawNet)                                                          |
+
+
