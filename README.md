@@ -12,7 +12,7 @@
 
 # WavEncoder
 
-WavEncoder is a Python library for encoding audio signal, transforms for audio augmention and training audio classification models with PyTorch backend.
+WavEncoder is a Python library for encoding audio signals, transforms for audio augmentation, and training audio classification models with PyTorch backend.
 
 ## Package Contents
 
