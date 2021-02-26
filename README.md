@@ -22,7 +22,7 @@ WavEncoder is a Python library for encoding audio signal, transforms for audio a
     <th class="tg-7btt">Layers</th>
     <th class="tg-7btt">Models</th>
     <th class="tg-7btt">Transforms</th>
-    <th class="tg-7btt">Training</th>
+    <th class="tg-7btt">Trainer and utils</th>
   </tr>
 </thead>
 <tbody>
@@ -63,12 +63,17 @@ WavEncoder is a Python library for encoding audio signal, transforms for audio a
             <li>PadCrop</li>
             <li>Clip</li>
             <li>Reverberation</li>
+            <li>TimeShift</li>
+            <li>TimeMask</li>
+            <li>FrequencyMask</li>
         </ul>
     </td>
     <td class="tg-0pky">
         <ul>
             <li>Classification Trainer</li>
             <li>Classification Testing</li>
+            <li>Download Noise Dataset</li>
+            <li>Download Impulse Response Dataset</li>
         </ul>
     </td>
   </tr>
@@ -181,10 +186,10 @@ from wavencoder.transforms import Compose, AdditiveNoise, SpeedChange, Clipping,
 audio, _ = torchaudio.load('test.wav')
 
 transforms = Compose([
-                    AdditiveNoise('path-to-noise', p=0.5, snr_levels=[5, 10, 15]), # add environmental Noise
-                    SpeedChange(factor_range=(-0.5, 0.0)), # change speed of signal
-                    Clipping(), # clip the amplitude of the signal
-                    PadCrop(48000, crop_position='random', pad_position='random') # fix the size of the signal pad/crop depending on the wav length
+                    AdditiveNoise('path-to-noise-folder', p=0.5, snr_levels=[5, 10, 15], p=0.5), 
+                    SpeedChange(factor_range=(-0.5, 0.0), p=0.5), 
+                    Clipping(p=0.5),
+                    PadCrop(48000, crop_position='random', pad_position='random') 
                     ])
 
 transformed_audio = transforms(audio)
