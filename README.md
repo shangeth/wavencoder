@@ -1,7 +1,7 @@
 ![PyPI](https://img.shields.io/pypi/v/wavencoder)
 ![PyPI - Downloads](https://img.shields.io/pypi/dw/wavencoder?logo=PyPi&style=plastic)
 ![visitors](https://visitor-badge.glitch.me/badge?page_id=page.id)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/shangeth/wavencoder/issues)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/wavencoder)
 ![GitHub last commit](https://img.shields.io/github/last-commit/shangeth/wavencoder)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/shangeth/wavencoder)
@@ -14,6 +14,69 @@
 
 WavEncoder is a Python library for encoding audio signal, transforms for audio augmention and training audio classification models with PyTorch backend.
 
+## Package Contents
+
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-7btt">Layers</th>
+    <th class="tg-7btt">Models</th>
+    <th class="tg-7btt">Transforms</th>
+    <th class="tg-7btt">Training</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0pky">
+        <ul>
+            <li>Attention</li>
+            <ul>
+                <li>Dot</li>
+                <li>Soft</li>
+                <li>Additive</li>
+                <li>Multiplicative</li>
+            </ul>
+            <li>SincNet layer</li>
+            <li>Time Delay Neural Network(TDNN)</li>
+        </ul>
+    </td>
+    <td class="tg-0pky">
+        <ul>
+            <li>PreTrained</li>
+                <ul>
+                    <li>wav2vec</li>
+                    <li>SincNet</li>
+                    <li>RawNet</li>
+                </ul>
+            <li>Baseline</li>
+                <ul>
+                    <li>1DCNN</li>
+                    <li>LSTM Classifier</li>
+                    <li>LSTM Attention Classifier</li>
+                </ul>
+        </ul>
+    </td>
+    <td class="tg-0pky">
+        <ul>
+            <li>Noise(Environmet/Gaussian White Noise)</li>
+            <li>Speed Change</li>
+            <li>PadCrop</li>
+            <li>Clip</li>
+            <li>Reverberation</li>
+        </ul>
+    </td>
+    <td class="tg-0pky">
+        <ul>
+            <li>Classification Trainer</li>
+            <li>Classification Testing</li>
+        </ul>
+    </td>
+  </tr>
+</tbody>
+</table>
+
+
+
 ## Wav Models to be added
 - [x] wav2vec [[1]](#1)
 - [ ] wav2vec2 [[2]](#2)
@@ -21,6 +84,8 @@ WavEncoder is a Python library for encoding audio signal, transforms for audio a
 - [ ] PASE [[4]](#4)
 - [ ] MockingJay [[5]](#5)
 - [x] RawNet [[6]](#6)
+- [ ] GaborNet [[7]](#7)
+- [ ] LEAF [[8]](#8)
 - [x] CNN-1D
 - [x] CNN-LSTM
 - [x] CNN-LSTM-Attn
@@ -33,7 +98,6 @@ Check the [Demo Colab Notebook](https://colab.research.google.com/drive/1Jv9cH4H
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install wavencoder.
 
 ```bash
-pip install fairseq
 pip install wavencoder
 ```
 
@@ -120,7 +184,7 @@ transforms = Compose([
                     AdditiveNoise('path-to-noise', p=0.5, snr_levels=[5, 10, 15]), # add environmental Noise
                     SpeedChange(factor_range=(-0.5, 0.0)), # change speed of signal
                     Clipping(), # clip the amplitude of the signal
-                    PadCrop(48000, crop_position='random', pad_position='random') # fix the siz of the signal pad/crop depending on the wav lenght
+                    PadCrop(48000, crop_position='random', pad_position='random') # fix the size of the signal pad/crop depending on the wav length
                     ])
 
 transformed_audio = transforms(audio)
@@ -146,3 +210,5 @@ Please make sure to update tests as appropriate.
 | [4] | [Learning Problem-agnostic Speech Representations from Multiple Self-supervised Tasks](https://arxiv.org/abs/1904.03416)                                 | [GitHub](https://github.com/santi-pdp/pase)                                                          |
 | [5] | [Mockingjay: Unsupervised Speech Representation Learning with Deep Bidirectional Transformer Encoders](https://arxiv.org/abs/1910.12638)                 | [GitHub](https://github.com/andi611/Self-Supervised-Speech-Pretraining-and-Representation-Learning ) |
 | [6] | [Improved RawNet with Feature Map Scaling for Text-independent Speaker Verification using Raw Waveforms](https://arxiv.org/abs/2004.00526)               | [GitHub](https://github.com/Jungjee/RawNet)                                                          |
+
+

@@ -13,6 +13,8 @@ import os
 import urllib.request
 from argparse import Namespace
 from tqdm import tqdm
+from wavencoder.utils import _reporthook
+
 
 from typing import Dict, List, Optional, Tuple
 from torch import Tensor

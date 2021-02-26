@@ -1,6 +1,8 @@
 import random
 import torch
+import torchaudio
 from torchaudio.compliance import kaldi
+
 
 class SpeedChange:
     def __init__(self, factor_range=(-0.15, 0.15), orig_freq=16000):

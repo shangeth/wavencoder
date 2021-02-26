@@ -3,7 +3,8 @@ import torch
 import os
 import random
 import torchaudio
-import scipy.io as io
+# import scipy.io as io
+
 
 class Reverberation:
     def __init__(self, ir_files_dir, max_reverb_len=24000, mat_dict_key=None):
