@@ -24,5 +24,7 @@ from wavencoder.transforms.clip import Clipping
 from wavencoder.transforms.pad_crop import Pad, Crop, PadCrop
 from wavencoder.transforms.reverberation import Reverberation
 from wavencoder.transforms.compose import Compose
+from wavencoder.transforms.spec_augment import TimeMask, FrequencyMask
 
 from wavencoder.utils import _reporthook
+from wavencoder.utils import example_wav_file

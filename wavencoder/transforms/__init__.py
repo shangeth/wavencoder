@@ -5,3 +5,4 @@ from wavencoder.transforms.clip import Clipping
 from wavencoder.transforms.pad_crop import Pad, Crop, PadCrop
 from wavencoder.transforms.reverberation import Reverberation
 from wavencoder.transforms.compose import Compose
+from wavencoder.transforms.spec_augment import TimeMask, FrequencyMask
