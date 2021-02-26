@@ -1,6 +1,8 @@
 import os
 from tqdm import tqdm
 import urllib.request
+import zipfile
+import shutil
 import torchaudio
 
 def isnotebook():
@@ -60,6 +62,13 @@ def example_wav_file():
 
 
 def download_noise_dataset(path='./', sample_rate='16k', download_all=True, noise_envs=None):
+    if not os.path.exists(path):
+        os.makedirs(path)
+
+    tmp_path = os.path.join(path, 'tmp')
+    if not os.path.exists(tmp_path):
+        os.makedirs(tmp_path)
+
     data_dict = {
         "kitchen" : f"https://zenodo.org/record/1227121/files/DKITCHEN_{sample_rate}.zip",
         "living" : f"https://zenodo.org/record/1227121/files/DLIVING_{sample_rate}.zip",
@@ -89,10 +98,46 @@ def download_noise_dataset(path='./', sample_rate='16k', download_all=True, nois
         filepath = os.path.join(path, filename)
         file_url = data_dict[i_download]
         if not os.path.exists(filepath):
-                    print(f'Downloading sample wav file from TIMIT Corpus - ({file_url})', flush=True)
+                    print(f'Downloading noise files for - ({i_download})', flush=True)
                     with tqdm(unit='B', unit_scale=True, miniters=1, desc=filepath) as t:
                         urllib.request.urlretrieve(file_url, filepath, reporthook=_reporthook(t))
 
+                    print(f'Extracting noise files for - ({i_download})', flush=True)
+                    with zipfile.ZipFile(filepath,"r") as zip_ref:
+                        zip_ref.extractall(tmp_path)
+                    
+                    os.remove(filepath)
+
+        for fol in os.listdir(tmp_path):
+            for file in os.listdir(os.path.join(tmp_path, fol)):
+                new_name = fol +'_' + file
+                shutil.move(os.path.join(tmp_path, fol, file), os.path.join(path, new_name))
+            os.rmdir(os.path.join(tmp_path, fol))
+
+    os.rmdir(tmp_path)
+    print('Downloaded and Extracted all Noise files to directory - ', path)
 
 
-    
+def download_ir_dataset(path='./'):
+    if not os.path.exists(path):
+        os.makedirs(path)
+        
+    url_path = 'https://www.voxengo.com/files/impulses/IMreverbs.zip'
+    filename = url_path.split('/')[-1]
+    filepath = os.path.join(path, filename)
+    if not os.path.exists(filepath):
+        print(f'Downloading ir files - ({url_path})', flush=True)
+        with tqdm(unit='B', unit_scale=True, miniters=1, desc=filepath) as t:
+            urllib.request.urlretrieve(url_path, filepath, reporthook=_reporthook(t))
+        
+        print(f'Extracting ir files for - ({filepath})', flush=True)
+        with zipfile.ZipFile(filepath,"r") as zip_ref:
+            zip_ref.extractall(path)
+
+        os.remove(filepath)
+        
+    for file in os.listdir(path):
+        if file.endswith(".txt"):
+            os.remove(os.path.join(path, file))
+    print('Downloaded and Extracted all IR files to directory - ', path)
+
