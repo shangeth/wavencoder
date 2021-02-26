@@ -3,25 +3,28 @@ import torch
 import os
 import random
 import torchaudio
-# import scipy.io as io
 
 
 class Reverberation:
-    def __init__(self, ir_files_dir, max_reverb_len=24000, mat_dict_key=None):
+    def __init__(self, ir_files_dir, max_reverb_len=24000, ir_rate=16000, p=0.5):
         self.ir_files_dir = ir_files_dir
         self.ir_files = os.listdir(self.ir_files_dir)
         self.max_reverb_len = max_reverb_len
-        self.mat_dict_key = mat_dict_key
+        self.ir_rate = ir_rate
+        self.p = p
     
     def load_IR(self):
         ir_file = random.choice(self.ir_files)
         ir_file = os.path.join(self.ir_files_dir, ir_file)
-        if ir_file.endswith('.mat'):
-            data= io.loadmat(ir_file)
-            IR = torch.from_numpy(data[self.mat_dict_key]).view(-1).float()
-        else:
-            IR, _ = torchaudio.load(ir_file)
-            IR = IR.view(-1)
+        IR, rate = torchaudio.load(ir_file)
+
+        if IR.size(0) == 2:
+            IR = IR[0]
+
+        if rate != self.ir_rate:
+            transformed = torchaudio.transforms.Resample(rate, self.ir_rate)(IR.view(1,-1))
+            
+        IR = IR.view(-1)
         IR = IR[:self.max_reverb_len]
 
         if torch.max(IR)>0:
@@ -40,18 +43,21 @@ class Reverberation:
         return e
 
     def __call__(self, wav):
-        wav = wav.view(-1)
-        IR, p_max = self.load_IR()
-        Ex = torch.dot(wav, wav)
-        rev = F.conv1d(wav.view(1, 1, -1), IR.view(1, 1, -1)).view(-1)
-        Er = torch.dot(rev, rev)
-        # rev = self.shift(rev, -p_max)
-        if Er>0:
-            Eratio = torch.sqrt(Ex/Er)
+        if random.random() < self.p:
+            wav = wav.view(-1)
+            IR, p_max = self.load_IR()
+            Ex = torch.dot(wav, wav)
+            rev = F.conv1d(wav.view(1, 1, -1), IR.view(1, 1, -1)).view(-1)
+            Er = torch.dot(rev, rev)
+            rev = self.shift(rev, -p_max)
+            if Er>0:
+                Eratio = torch.sqrt(Ex/Er)
+            else:
+                Eratio = 1.0
+            rev = rev[:wav.shape[0]]
+            rev = Eratio * rev
+            return rev.view(1, -1)
         else:
-            Eratio = 1.0
-        rev = rev[:wav.shape[0]]
-        rev = Eratio * rev
-        return rev.view(1, -1)
+            return wav
 
 
