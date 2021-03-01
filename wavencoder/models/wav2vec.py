@@ -125,6 +125,20 @@ class ConvFeatureExtractionModel(nn.Module):
 
 class Wav2Vec(nn.Module):
     def __init__(self, pretrained=True, pretrained_path=None, device=torch.device("cpu")):
+        """wav2vec model encoder with pretrained weights
+
+        Example:
+            import wavencoder
+            model = wavencoder.model.Wav2Vec(pretrained=True)
+
+        Args:
+            pretrained (bool, optional): [Use pretrained weights, download if weights are not available already]. Defaults to True.
+            pretrained_path ([type], optional): [path to pretrained weights, if already downloaded separately]. Defaults to None.
+            device ([type], optional): [device(cpu/cuda) of the model]. Defaults to torch.device("cpu").
+
+        Raises:
+            Exception: None
+        """
         super().__init__()
         self.device = device
         if pretrained:
