@@ -96,7 +96,7 @@ WavEncoder is a Python library for encoding audio signals, transforms for audio 
 - [x] CNN-LSTM-Attn
 - [ ] CNN-Transformer
 
-Check the [Demo Colab Notebook](https://colab.research.google.com/drive/1Jv9cH4H0xB2To1rihFz-Z-JaK-6ilq12?usp=sharing).
+Check the [Demo Colab Notebook](https://colab.research.google.com/drive/1nu7TrxzeoXuxwHYYaK6alfrFuWi65i4y?usp=sharing).
 
 ## Installation
 
