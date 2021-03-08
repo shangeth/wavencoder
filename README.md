@@ -1,5 +1,5 @@
 ![PyPI](https://img.shields.io/pypi/v/wavencoder)
-![PyPI - Downloads](https://img.shields.io/pypi/dw/wavencoder?logo=PyPi&style=plastic)
+![Downloads](https://pepy.tech/badge/wavencoder)](https://pepy.tech/project/wavencoder)
 ![visitors](https://visitor-badge.glitch.me/badge?page_id=page.id)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/shangeth/wavencoder/issues)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/wavencoder)
