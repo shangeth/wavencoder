@@ -43,4 +43,4 @@ class Wav2Vec2(nn.Module):
 
     def forward(self, x):
         x = x.squeeze(1)
-        return self.model(x, features_only=True)
+        return self.model(x, features_only=True)['x']
