@@ -45,6 +45,7 @@ WavEncoder is a Python library for encoding audio signals, transforms for audio 
             <li>PreTrained</li>
                 <ul>
                     <li>wav2vec</li>
+                    <li>wav2vec2(base, large, xlsr53)</li>
                     <li>SincNet</li>
                     <li>RawNet</li>
                 </ul>
