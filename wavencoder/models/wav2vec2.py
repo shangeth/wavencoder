@@ -18,7 +18,7 @@ class Wav2Vec2(nn.Module):
         super().__init__()
         self.device = device
         self.model_type = model_type
-        self.models_links = {
+        self.model_links = {
             'base' : 'https://dl.fbaipublicfiles.com/fairseq/wav2vec/wav2vec_small.pt',
             'large' : 'https://dl.fbaipublicfiles.com/fairseq/wav2vec/libri960_big.pt',
             'xlsr53' : 'https://dl.fbaipublicfiles.com/fairseq/wav2vec/xlsr_53_56k.pt'
