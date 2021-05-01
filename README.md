@@ -85,7 +85,7 @@ WavEncoder is a Python library for encoding audio signals, transforms for audio 
 
 ## Wav Models to be added
 - [x] wav2vec [[1]](#1)
-- [ ] wav2vec2 [[2]](#2)
+- [x] wav2vec2 [[2]](#2)
 - [x] SincNet [[3]](#3)
 - [ ] PASE [[4]](#4)
 - [ ] MockingJay [[5]](#5)
@@ -95,7 +95,6 @@ WavEncoder is a Python library for encoding audio signals, transforms for audio 
 - [x] CNN-1D
 - [x] CNN-LSTM
 - [x] CNN-LSTM-Attn
-- [ ] CNN-Transformer
 
 Check the [Demo Colab Notebook](https://colab.research.google.com/drive/1nu7TrxzeoXuxwHYYaK6alfrFuWi65i4y?usp=sharing).
 
