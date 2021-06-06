@@ -1,6 +1,5 @@
 import setuptools
 
-
 def readme():
     with open('README.md') as f:
         README = f.read()
@@ -10,7 +9,7 @@ setuptools.setup(
     name="wavencoder",
     author="Shangeth Rajaa",
     author_email="shangethrajaa@gmail.com",
-    version="0.1.2", 
+    version="0.1.3", 
     license="MIT",
     url="https://github.com/shangeth/wavencoder",
     description="WavEncoder - PyTorch backed audio encoder",
